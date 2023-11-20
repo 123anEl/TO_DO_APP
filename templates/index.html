@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.min.css" integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<title>Todo App</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="/">Logo</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a href="/profile">
+              <div style="background-size: cover; width: 60px; height: 60px; border-radius: 50%;">
+          <img src="{{ user.photo }}" style="background-size: cover; width: 60px; height: 60px; border-radius: 50%;">
+        </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <main role="main" class="container extra-bottom">
+        <div class="row">
+      <h1 class="mt-5">Todo List</h1>
+
+        </div>
+        <div class="row">
+        <form class="form-inline d-flex" method="POST" action="{{ url_for('add_todo') }}">
+  <div class="form-group col-sm-3 mx-sm-3 mb-2">
+    <input type="text" class="form-control"name="title" placeholder="Enter a new todo...">
+  </div>
+  <button type="submit" class="btn btn-primary mb-2">Add</button>
+</form>
+        </div>
+    </main>
+
+<div class="container mt-4">
+<div class="row my-4">
+<div class="col-lg-12">
+<div class="table-responsive">
+{% if todos %}
+<table class="table table-striped text-center">
+<thead>
+<tr class="table-dark">
+<th>#</th>
+<th>Task</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+{% for todo in todos %}
+<tr>
+<td>{{ loop.index }}</td>
+<td>{{ todo.title }}</td>
+
+<td>{% if todo.complete == False%}
+    <span class="ui gray label">Not Complete</span>
+{% else %}
+    <span class="ui green label">Completed</span>
+{% endif %}
+</td>
+    <td>
+        <a href="{{ url_for('update_todo', id=todo._id) }}"><i class="fas fa-edit fa-lg mx-1"></i></a>
+        <a href="{{ url_for('delete_todo', id=todo._id) }}"><i class="fas fa-trash fa-lg mx-1"></i></a>
+    </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}
+<h1 class="text-center text-secondary mt-5">No items found in the database</h1>
+{% endif %}
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

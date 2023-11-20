@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Lato', 'sans-serif';
+}
+        .profile
+        {
+            min-height: 355px;
+            display: inline-block;
+        }
+        figcaption.ratings
+        {
+            margin-top:20px;
+        }
+        figcaption.ratings a
+        {
+            color:#f1c40f;
+            font-size:11px;
+        }
+        figcaption.ratings a:hover
+        {
+            color:#f39c12;
+            text-decoration:none;
+        }
+        .divider
+        {
+            border-top:1px solid rgba(0,0,0,0.1);
+        }
+        .emphasis
+        {
+            border-top: 4px solid transparent;
+        }
+        .emphasis:hover
+        {
+            border-top: 4px solid #1abc9c;
+        }
+        .emphasis h2
+        {
+            margin-bottom:0;
+        }
+        span.tags
+        {
+            background: #1abc9c;
+            border-radius: 2px;
+            color: #f5f5f5;
+            font-weight: bold;
+            padding: 2px 4px;
+        }
+        .dropdown-menu
+        {
+            background-color: #34495e;
+            box-shadow: none;
+            -webkit-box-shadow: none;
+            width: 250px;
+            margin-left: -125px;
+            left: 50%;
+        }
+        .dropdown-menu .divider
+        {
+            background:none;
+        }
+        .dropdown-menu>li>a
+        {
+            color:#f5f5f5;
+        }
+        .dropup .dropdown-menu
+        {
+            margin-bottom:10px;
+        }
+        .dropup .dropdown-menu:before
+        {
+            content: "";
+            border-top: 10px solid #34495e;
+            border-right: 10px solid transparent;
+            border-left: 10px solid transparent;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            margin-left: -10px;
+            z-index: 10;
+        }
+        row {
+            flex-shrink: inherit;
+        }
+        div {
+  margin-top: 20px;
+}
+        .col-sm-12 .col-xs-12.col-sm-4 {
+
+}
+
+
+
+        .col-xs-12.col-sm-4 {
+  float: left !important;
+  margin-right: 10px !important;
+}
+        .col-sm-12{
+            display:flex;
+            flex-direction: row;
+            clear: both;
+        }
+
+        .col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+                @media (min-width: 992px){
+.col-md-8 {
+    width: 79.666667%;
+}}
+            @media (min-width: 1200px){
+.col-lg-6 {
+    width: 90%;
+} }
+    </style>
+    <title>Your Account</title>
+</head>
+<body>
+<div class="row">
+    <div class="col-md-offset-2 col-md-8 col-lg-offset-3 col-lg-6">
+        <div class="well profile">
+            <div class="col-sm-12">
+                <div class="col-xs-12 col-sm-8">
+                    <h2>{{ user.username }}</h2>
+                    <h2>{{ user.email }}</h2>
+
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <figure>
+                        <img src="{{ user.photo }}" width="100" class="img-circle img-responsive">
+                    </figure>
+                </div>
+            </div>
+            <div class="col-md-12 mx-auto text-center mt-3">
+                <a href="/edit"><button class="btn btn-info btn-block"><span class="fa fa-plus-circle"></span>Edit profile</button></a>
+                <a href="/"><button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span>My List</button></a>
+                <a href="{{ url_for('logout') }}"><button class="btn btn-danger btn-block"><span class="fa fa-plus-circle"></span>Logout</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
